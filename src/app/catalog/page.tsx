@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Filters from "../../components/catalog/Filters";
 import CatalogList from "../../components/catalog/CatalogList";
-import LoadMoreButton from "../../components/catalog/LoadMoreButton";
 
 export default function CatalogPage() {
   const [locationInput, setLocationInput] = useState("");
@@ -66,9 +65,6 @@ export default function CatalogPage() {
             transmission={appliedTransmission}
           />
 
-          <div style={{ marginTop: "24px" }}>
-            <LoadMoreButton />
-          </div>
         </div>
       </div>
     </main>
