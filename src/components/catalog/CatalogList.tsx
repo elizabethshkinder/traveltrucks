@@ -1,11 +1,30 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+import { getCampers } from "../../lib/api";
+import CamperCard from "./CamperCard";
+
 export default function CatalogList() {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["campers"],
+    queryFn: () => getCampers({ page: 1, perPage: 4 }),
+  });
+
+  if (isLoading) {
+    return <p>Loading campers...</p>;
+  }
+
+  if (isError) {
+    return <p>{(error as Error).message}</p>;
+  }
+
   return (
     <section>
       <h2>Campers list</h2>
-      <p>Camper card 1</p>
-      <p>Camper card 2</p>
-      <p>Camper card 3</p>
-      <p>Camper card 4</p>
+
+      {data?.campers.map((camper) => (
+        <CamperCard key={camper.id} camper={camper} />
+      ))}
     </section>
   );
 }
