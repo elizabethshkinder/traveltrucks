@@ -4,10 +4,30 @@ import { useQuery } from "@tanstack/react-query";
 import { getCampers } from "../../lib/api";
 import CamperCard from "./CamperCard";
 
-export default function CatalogList() {
+interface CatalogListProps {
+  location: string;
+  form: string;
+  engine: string;
+  transmission: string;
+}
+
+export default function CatalogList({
+  location,
+  form,
+  engine,
+  transmission,
+}: CatalogListProps) {
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["campers"],
-    queryFn: () => getCampers({ page: 1, perPage: 4 }),
+    queryKey: ["campers", location, form, engine, transmission],
+    queryFn: () =>
+      getCampers({
+        page: 1,
+        perPage: 4,
+        location,
+        form,
+        engine,
+        transmission,
+      }),
   });
 
   if (isLoading) {
@@ -22,9 +42,13 @@ export default function CatalogList() {
     <section>
       <h2>Campers list</h2>
 
-      {data?.campers.map((camper) => (
-        <CamperCard key={camper.id} camper={camper} />
-      ))}
+      {data?.campers.length === 0 ? (
+        <p>No campers found</p>
+      ) : (
+        data?.campers.map((camper) => (
+          <CamperCard key={camper.id} camper={camper} />
+        ))
+      )}
     </section>
   );
 }
