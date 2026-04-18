@@ -1,13 +1,17 @@
-export default function CamperInfo() {
+import type { Camper } from "../../types/camper";
+
+interface CamperInfoProps {
+  camper: Camper;
+}
+
+export default function CamperInfo({ camper }: CamperInfoProps) {
   return (
     <section>
-      <h1>Mavericks</h1>
-      <p>€8000</p>
-      <p>Kyiv, Ukraine</p>
-      <p>
-        This is a camper description. Full information about the selected camper
-        will be displayed here.
-      </p>
+      <h1>{camper.name}</h1>
+      <p>€{camper.price}</p>
+      <p>{camper.location}</p>
+      <p>Rating: {camper.rating}</p>
+      <p>{camper.description}</p>
     </section>
   );
 }
