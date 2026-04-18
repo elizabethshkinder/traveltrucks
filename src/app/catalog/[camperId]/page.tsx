@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getCamperById } from "../../../lib/api";
+import { getCamperById, getCamperReviews } from "../../../lib/api";
 import CamperInfo from "../../../components/camper-details/CamperInfo";
 import CamperGallery from "../../../components/camper-details/CamperGallery";
 import ReviewsList from "../../../components/camper-details/ReviewsList";
@@ -19,30 +19,46 @@ export default function CamperDetailsPage({
 }: CamperDetailsPageProps) {
   const { camperId } = React.use(params);
 
-  const { data, isLoading, isError, error } = useQuery({
+  const {
+    data: camper,
+    isLoading: isCamperLoading,
+    isError: isCamperError,
+    error: camperError,
+  } = useQuery({
     queryKey: ["camper", camperId],
     queryFn: () => getCamperById(camperId),
     enabled: Boolean(camperId),
   });
 
-  if (isLoading) {
+  const {
+    data: reviews = [],
+    isLoading: isReviewsLoading,
+    isError: isReviewsError,
+    error: reviewsError,
+  } = useQuery({
+    queryKey: ["reviews", camperId],
+    queryFn: () => getCamperReviews(camperId),
+    enabled: Boolean(camperId),
+  });
+
+  if (isCamperLoading) {
     return <p>Loading camper details...</p>;
   }
 
-  if (isError) {
-    return <p>{(error as Error).message}</p>;
+  if (isCamperError) {
+    return <p>{(camperError as Error).message}</p>;
   }
 
-  if (!data) {
+  if (!camper) {
     return <p>Camper not found</p>;
   }
 
   return (
     <main style={{ padding: "40px" }}>
-      <CamperInfo camper={data} />
+      <CamperInfo camper={camper} />
 
       <div style={{ marginTop: "32px" }}>
-        <CamperGallery gallery={data.gallery} />
+        <CamperGallery gallery={camper.gallery} />
       </div>
 
       <div
@@ -54,8 +70,17 @@ export default function CamperDetailsPage({
           alignItems: "start",
         }}
       >
-        <ReviewsList />
-        <BookingForm />
+        <div>
+          {isReviewsLoading ? (
+            <p>Loading reviews...</p>
+          ) : isReviewsError ? (
+            <p>{(reviewsError as Error).message}</p>
+          ) : (
+            <ReviewsList reviews={reviews} />
+          )}
+        </div>
+
+        <BookingForm camperId={camperId} />
       </div>
     </main>
   );
