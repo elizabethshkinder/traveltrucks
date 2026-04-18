@@ -24,7 +24,7 @@
 }
 
 .content {
-  max-width: 571px;
+  min-width: 571px;
 }
 
 .title {
@@ -32,7 +32,7 @@
   font-weight: 600;
   font-size: 48px;
   line-height: 67%;
-  color: #ffffff;
+  color: #f7f7f7;
 }
 
 .text {
