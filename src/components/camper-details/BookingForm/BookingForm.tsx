@@ -1,6 +1,8 @@
 "use client";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import toast from "react-hot-toast";
+
 import { createBookingRequest } from "../../../lib/api";
 import { bookingSchema } from "../../../validations/bookingValidation";
 import type { BookingPayload } from "../../../types/booking";
@@ -26,29 +28,23 @@ export default function BookingForm({ camperId }: BookingFormProps) {
       <Formik
         initialValues={initialValues}
         validationSchema={bookingSchema}
-        onSubmit={async (values, { resetForm, setSubmitting, setStatus }) => {
-          setStatus({ success: "", error: "" });
-
+        onSubmit={async (values, { resetForm, setSubmitting }) => {
           try {
             const response = await createBookingRequest(camperId, values);
 
-            setStatus({
-              success: response.message || "Booking request sent successfully!",
-              error: "",
-            });
+            toast.success(
+              response.message || "Booking request sent successfully!"
+            );
 
             resetForm();
           } catch (error) {
-            setStatus({
-              success: "",
-              error: (error as Error).message || "Something went wrong",
-            });
+            toast.error((error as Error).message || "Something went wrong");
           } finally {
             setSubmitting(false);
           }
         }}
       >
-        {({ isSubmitting, status }) => (
+        {({ isSubmitting }) => (
           <Form className={styles.form}>
             <div className={styles.fieldGroup}>
               <Field
@@ -85,12 +81,6 @@ export default function BookingForm({ camperId }: BookingFormProps) {
             >
               {isSubmitting ? "Sending..." : "Send"}
             </button>
-
-            {status?.success && (
-              <p className={styles.success}>{status.success}</p>
-            )}
-
-            {status?.error && <p className={styles.error}>{status.error}</p>}
           </Form>
         )}
       </Formik>
