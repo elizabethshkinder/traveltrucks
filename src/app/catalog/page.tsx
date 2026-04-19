@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Filters from "../../components/catalog/Filters";
-import CatalogList from "../../components/catalog/CatalogList";
+import Filters from "../../components/catalog/Filters/Filters";
+import CatalogList from "../../components/catalog/CatalogList/CatalogList";
+import styles from "./catalog.module.css";
 
 export default function CatalogPage() {
   const [locationInput, setLocationInput] = useState("");
@@ -35,36 +36,30 @@ export default function CatalogPage() {
   }
 
   return (
-    <main style={{ padding: "40px" }}>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "250px 1fr",
-          gap: "40px",
-          alignItems: "start",
-        }}
-      >
-        <Filters
-          location={locationInput}
-          form={formInput}
-          engine={engineInput}
-          transmission={transmissionInput}
-          onLocationChange={setLocationInput}
-          onFormChange={setFormInput}
-          onEngineChange={setEngineInput}
-          onTransmissionChange={setTransmissionInput}
-          onSearch={handleSearch}
-          onClear={handleClear}
-        />
+    <main className={styles.catalogPage}>
+      <div className={styles.catalogLayout}>
+        <div className={styles.sidebar}>
+          <Filters
+            location={locationInput}
+            form={formInput}
+            engine={engineInput}
+            transmission={transmissionInput}
+            onLocationChange={setLocationInput}
+            onFormChange={setFormInput}
+            onEngineChange={setEngineInput}
+            onTransmissionChange={setTransmissionInput}
+            onSearch={handleSearch}
+            onClear={handleClear}
+          />
+        </div>
 
-        <div>
+        <div className={styles.content}>
           <CatalogList
             location={appliedLocation}
             form={appliedForm}
             engine={appliedEngine}
             transmission={appliedTransmission}
           />
-
         </div>
       </div>
     </main>

@@ -1,0 +1,79 @@
+.section {
+  width: 100%;
+}
+
+.title {
+  margin: 0 0 24px;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #101828;
+}
+
+.message {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  border-radius: 24px;
+  padding: 24px;
+  background-color: #f7f7f7;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 600;
+  color: #e44848;
+  background-color: #ffffff;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.33;
+  font-weight: 600;
+  color: #101828;
+}
+
+.rating {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #475467;
+}
+
+.comment {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+}

@@ -1,0 +1,39 @@
+.section {
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.card {
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #f2f4f7;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 312px;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .image {
+    height: 260px;
+  }
+}

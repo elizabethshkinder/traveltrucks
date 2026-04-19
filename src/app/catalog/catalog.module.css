@@ -1,0 +1,39 @@
+.catalogPage {
+  padding: 48px 0 64px;
+}
+
+.catalogLayout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 64px;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 64px;
+  align-items: start;
+}
+
+.sidebar {
+  min-width: 0;
+}
+
+.content {
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .catalogLayout {
+    padding: 0 32px;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalogPage {
+    padding: 32px 0 48px;
+  }
+
+  .catalogLayout {
+    padding: 0 16px;
+  }
+}

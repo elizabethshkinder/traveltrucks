@@ -3,10 +3,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getCamperById, getCamperReviews } from "../../../lib/api";
-import CamperInfo from "../../../components/camper-details/CamperInfo";
-import CamperGallery from "../../../components/camper-details/CamperGallery";
-import ReviewsList from "../../../components/camper-details/ReviewsList";
-import BookingForm from "../../../components/camper-details/BookingForm";
+import CamperDetailsLayout from "../../../components/camper-details/CamperDetailsLayout/CamperDetailsLayout";
 
 interface CamperDetailsPageProps {
   params: Promise<{
@@ -54,34 +51,13 @@ export default function CamperDetailsPage({
   }
 
   return (
-    <main style={{ padding: "40px" }}>
-      <CamperInfo camper={camper} />
-
-      <div style={{ marginTop: "32px" }}>
-        <CamperGallery gallery={camper.gallery} />
-      </div>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 400px",
-          gap: "32px",
-          marginTop: "40px",
-          alignItems: "start",
-        }}
-      >
-        <div>
-          {isReviewsLoading ? (
-            <p>Loading reviews...</p>
-          ) : isReviewsError ? (
-            <p>{(reviewsError as Error).message}</p>
-          ) : (
-            <ReviewsList reviews={reviews} />
-          )}
-        </div>
-
-        <BookingForm camperId={camperId} />
-      </div>
-    </main>
+    <CamperDetailsLayout
+      camper={camper}
+      camperId={camperId}
+      reviews={reviews}
+      isReviewsLoading={isReviewsLoading}
+      isReviewsError={isReviewsError}
+      reviewsError={(reviewsError as Error) ?? null}
+    />
   );
 }

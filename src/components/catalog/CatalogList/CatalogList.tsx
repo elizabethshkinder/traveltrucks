@@ -1,9 +1,10 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getCampers } from "../../lib/api";
-import CamperCard from "./CamperCard";
-import LoadMoreButton from "./LoadMoreButton";
+import { getCampers } from "../../../lib/api";
+import CamperCard from "../CamperCard/CamperCard";
+import LoadMoreButton from "../LoadMoreButton";
+import styles from "./CatalogList.module.css";
 
 interface CatalogListProps {
   location: string;
@@ -55,17 +56,19 @@ export default function CatalogList({
   const campers = data?.pages.flatMap((page) => page.campers) ?? [];
 
   return (
-    <section>
-      <h2>Campers list</h2>
-
-      {campers.length === 0 ? (
-        <p>No campers found</p>
-      ) : (
-        campers.map((camper) => <CamperCard key={camper.id} camper={camper} />)
-      )}
+    <section className={styles.section}>
+      <div className={styles.list}>
+        {campers.length === 0 ? (
+          <p className={styles.message}>No campers found</p>
+        ) : (
+          campers.map((camper) => (
+            <CamperCard key={camper.id} camper={camper} />
+          ))
+        )}
+      </div>
 
       {hasNextPage && (
-        <div style={{ marginTop: "24px" }}>
+        <div className={styles.loadMoreWrapper}>
           <LoadMoreButton
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}

@@ -1,14 +1,10 @@
-export interface CamperImage {
-  thumb: string;
-  original: string;
-}
+import type { CamperImage } from "./camper-image";
 
-export interface Camper {
+export type Camper = {
   id: string;
   name: string;
   price: number;
   rating: number;
-  totalReviews: number;
   location: string;
   description: string;
   form: string;
@@ -19,36 +15,27 @@ export interface Camper {
   consumption: string;
   transmission: string;
   engine: string;
-  AC: boolean;
-  bathroom: boolean;
-  kitchen: boolean;
-  TV: boolean;
-  radio: boolean;
-  refrigerator: boolean;
-  microwave: boolean;
-  gas: boolean;
-  water: boolean;
+  amenities: string[];
+  createdAt: string;
+  updatedAt: string;
+  coverImage?: string;
   gallery: CamperImage[];
-}
+  totalReviews: number;
+};
 
-export interface CampersResponse {
+export type CampersParams = {
+  page?: number;
+  perPage?: number;
+  location?: string;
+  form?: string;
+  transmission?: string;
+  engine?: string;
+};
+
+export type CampersResponse = {
   page: number;
   perPage: number;
+  total: number;
   totalPages: number;
-  totalItems: number;
   campers: Camper[];
-}
-
-export interface Review {
-  id: string;
-  camperId: string;
-  reviewer_name: string;
-  comment: string;
-  reviewer_rating: number;
-  createdAt: string;
-}
-
-export interface BookingRequest {
-  name: string;
-  email: string;
-}
+};

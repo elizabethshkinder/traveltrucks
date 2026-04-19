@@ -1,0 +1,21 @@
+.section {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.loadMoreWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.message {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+}

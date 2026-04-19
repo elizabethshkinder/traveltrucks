@@ -1,26 +1,9 @@
-import type {
-  BookingRequest,
-  Camper,
-  CampersResponse,
-  Review,
-} from "../types/camper";
+import clientApi from "./clientApi";
+import type { BookingPayload, BookingResponse } from "../types/booking";
+import type { Camper, CampersParams, CampersResponse } from "../types/camper";
+import type { Review } from "../types/review";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
-if (!BASE_URL) {
-  throw new Error("NEXT_PUBLIC_BASE_URL is not defined");
-}
-
-export interface GetCampersParams {
-  page?: number;
-  perPage?: number;
-  location?: string;
-  form?: string;
-  transmission?: string;
-  engine?: string;
-}
-
-function buildQuery(params: GetCampersParams): string {
+function buildQuery(params: CampersParams): string {
   const searchParams = new URLSearchParams();
 
   if (params.page !== undefined) {
@@ -51,59 +34,33 @@ function buildQuery(params: GetCampersParams): string {
 }
 
 export async function getCampers(
-  params: GetCampersParams = {}
+  params: CampersParams = {}
 ): Promise<CampersResponse> {
   const query = buildQuery(params);
-  const url = query ? `${BASE_URL}/campers?${query}` : `${BASE_URL}/campers`;
+  const url = query ? `/campers?${query}` : "/campers";
 
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch campers");
-  }
-
-  const data: CampersResponse = await response.json();
+  const { data } = await clientApi.get<CampersResponse>(url);
   return data;
 }
 
 export async function getCamperById(camperId: string): Promise<Camper> {
-  const response = await fetch(`${BASE_URL}/campers/${camperId}`);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch camper details");
-  }
-
-  const data: Camper = await response.json();
+  const { data } = await clientApi.get<Camper>(`/campers/${camperId}`);
   return data;
 }
 
 export async function getCamperReviews(camperId: string): Promise<Review[]> {
-  const response = await fetch(`${BASE_URL}/campers/${camperId}/reviews`);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch camper reviews");
-  }
-
-  const data: Review[] = await response.json();
+  const { data } = await clientApi.get<Review[]>(`/campers/${camperId}/reviews`);
   return data;
 }
 
 export async function createBookingRequest(
   camperId: string,
-  bookingData: BookingRequest
-): Promise<{ message: string }> {
-  const response = await fetch(`${BASE_URL}/campers/${camperId}/booking-requests`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(bookingData),
-  });
+  bookingData: BookingPayload
+): Promise<BookingResponse> {
+  const { data } = await clientApi.post<BookingResponse>(
+    `/campers/${camperId}/booking-requests`,
+    bookingData
+  );
 
-  if (!response.ok) {
-    throw new Error("Failed to create booking request");
-  }
-
-  const data: { message: string } = await response.json();
   return data;
 }
