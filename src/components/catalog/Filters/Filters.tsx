@@ -28,7 +28,13 @@ export default function Filters({
   onClear,
 }: FiltersProps) {
   return (
-    <aside className={styles.filters}>
+    <form 
+      className={styles.filters}
+      onSubmit={(e) => {
+        e.preventDefault();
+      onSearch();
+      }}
+    >
       <div className={styles.section}>
         <label className={styles.sectionLabel}>Location</label>
 
@@ -127,7 +133,7 @@ export default function Filters({
       </div>
 
       <div className={styles.actions}>
-        <button type="button" onClick={onSearch} className={styles.searchButton}>
+        <button type="submit" className={styles.searchButton}>
           Search
         </button>
 
@@ -138,6 +144,6 @@ export default function Filters({
           Clear filters
         </button>
       </div>
-    </aside>
+    </form>
   );
 }
