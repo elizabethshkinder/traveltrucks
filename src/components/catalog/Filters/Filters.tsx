@@ -31,13 +31,25 @@ export default function Filters({
     <aside className={styles.filters}>
       <div className={styles.section}>
         <label className={styles.sectionLabel}>Location</label>
-        <input
-          type="text"
-          value={location}
-          onChange={(e) => onLocationChange(e.target.value)}
-          placeholder="Enter location"
-          className={styles.input}
-        />
+
+     <div className={styles.inputWrapper}>
+          <svg
+            className={styles.inputIcon}
+            width="18"
+            height="18"
+            aria-hidden="true"
+          >
+            <use href="/sprite.svg#icon-map" />
+          </svg>
+
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Enter location"
+            value={location}
+            onChange={(event) => onLocationChange(event.target.value)}
+          />
+        </div>
       </div>
 
       <div className={styles.section}>
@@ -120,7 +132,9 @@ export default function Filters({
         </button>
 
         <button type="button" onClick={onClear} className={styles.clearButton}>
-          <span className={styles.clearIcon}>×</span>
+          <svg className={styles.clearIcon} width="12" height="12" aria-hidden="true">
+            <use href="/sprite.svg#icon-close" />
+          </svg>
           Clear filters
         </button>
       </div>

@@ -1,19 +1,26 @@
 .card {
   display: grid;
-  grid-template-columns: 292px 1fr;
+  grid-template-columns: 292px minmax(0, 1fr);
   gap: 24px;
   padding: 24px;
   border-radius: 20px;
-  background-color: var(--inputs);
+  background-color: #f7f7f7;
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .imageWrapper {
   position: relative;
-  width: 292px;
-  height: 320px;
-  border-radius: 10px;
+  min-height: 320px;
+  border-radius: 16px;
   overflow: hidden;
-  flex-shrink: 0;
+  background-color: #dadde1;
 }
 
 .image {
@@ -21,24 +28,20 @@
 }
 
 .imagePlaceholder {
-  width: 100%;
-  height: 100%;
-  background-color: var(--badges);
-  color: var(--gray);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  height: 100%;
+  color: #6c717b;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  min-width: 0;
 }
 
 .topRow {
-  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -48,59 +51,79 @@
 
 .title {
   margin: 0;
-  color: var(--main);
   font-size: 24px;
-  font-weight: 600;
   line-height: 1.33;
+  font-weight: 600;
+  color: #101828;
 }
 
 .price {
   margin: 0;
-  color: var(--main);
   font-size: 24px;
-  font-weight: 600;
   line-height: 1.33;
+  font-weight: 600;
+  color: #101828;
+  white-space: nowrap;
 }
 
 .metaRow {
   display: flex;
   align-items: center;
-  gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .metaItem {
-  color: var(--main);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-size: 16px;
   line-height: 1.5;
+  color: #101828;
+}
+
+.metaIcon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
 }
 
 .description {
   margin: 0 0 24px;
-  color: var(--text);
   font-size: 16px;
   line-height: 1.5;
+  color: #475467;
 }
 
 .badges {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 8px;
   margin-bottom: 24px;
 }
 
 .badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-height: 48px;
+  gap: 8px;
   padding: 12px 18px;
   border-radius: 100px;
-  background-color: var(--badges);
-  color: var(--main);
+  background-color: #ffffff;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.25;
+  color: #101828;
+}
+
+.badgeIcon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  flex-shrink: 0;
 }
 
 .button {
@@ -109,16 +132,25 @@
   justify-content: center;
   min-width: 166px;
   height: 56px;
-  padding: 16px 32px;
+  padding: 16px 40px;
   border-radius: 200px;
-  background-color: var(--grey-green);
-  color: var(--white);
-  text-decoration: none;
+  background-color: #829b91;
+  color: #ffffff;
   font-size: 16px;
-  font-weight: 500;
   line-height: 1.5;
+  font-weight: 500;
 }
 
 .button:hover {
-  background-color: var(--green-hover);
+  background-color: #6d7b75;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .imageWrapper {
+    min-height: 260px;
+  }
 }

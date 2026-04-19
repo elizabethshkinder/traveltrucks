@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.filled {
+  color: #ffc531;
+}
+
+.empty {
+  color: #dadde1;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Camper } from "../../../types/camper";
+import Rating from "../../shared/Rating/Rating";
 import styles from "./CamperCard.module.css";
 
 interface CamperCardProps {
@@ -33,11 +34,23 @@ export default function CamperCard({ camper }: CamperCardProps) {
         </div>
 
         <div className={styles.metaRow}>
-          <span className={styles.metaItem}>★ {camper.rating}</span>
-          <span className={styles.metaItem}>
-            ({camper.totalReviews} Reviews)
-          </span>
-          <span className={styles.metaItem}>{camper.location}</span>
+          <Rating
+            rating={camper.rating}
+            reviews={camper.totalReviews}
+            showText
+          />
+
+          <div className={styles.metaItem}>
+            <svg
+              className={styles.metaIcon}
+              width="16"
+              height="16"
+              aria-hidden="true"
+            >
+              <use href="/sprite.svg#icon-map" />
+            </svg>
+            <span>{camper.location}</span>
+          </div>
         </div>
 
         <p className={styles.description}>
@@ -45,9 +58,41 @@ export default function CamperCard({ camper }: CamperCardProps) {
         </p>
 
         <div className={styles.badges}>
-          <span className={styles.badge}>{camper.engine}</span>
-          <span className={styles.badge}>{camper.transmission}</span>
-          <span className={styles.badge}>{camper.form}</span>
+          <span className={styles.badge}>
+            <svg
+              className={styles.badgeIcon}
+              width="20"
+              height="20"
+              aria-hidden="true"
+            >
+              <use href="/sprite.svg#icon-petrol" />
+            </svg>
+            {camper.engine}
+          </span>
+
+          <span className={styles.badge}>
+            <svg
+              className={styles.badgeIcon}
+              width="20"
+              height="20"
+              aria-hidden="true"
+            >
+              <use href="/sprite.svg#icon-automatic" />
+            </svg>
+            {camper.transmission}
+          </span>
+
+          <span className={styles.badge}>
+            <svg
+              className={styles.badgeIcon}
+              width="20"
+              height="20"
+              aria-hidden="true"
+            >
+              <use href="/sprite.svg#icon-camper" />
+            </svg>
+            {camper.form}
+          </span>
         </div>
 
         <Link href={`/catalog/${camper.id}`} className={styles.button}>

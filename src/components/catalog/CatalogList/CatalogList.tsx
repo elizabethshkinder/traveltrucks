@@ -3,7 +3,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getCampers } from "../../../lib/api";
 import CamperCard from "../CamperCard/CamperCard";
-import LoadMoreButton from "../LoadMoreButton";
+import LoadMoreButton from "../LoadMoreButton/LoadMoreButton";
 import styles from "./CatalogList.module.css";
 
 interface CatalogListProps {

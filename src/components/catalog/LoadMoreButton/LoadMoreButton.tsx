@@ -1,3 +1,5 @@
+import styles from "./LoadMoreButton.module.css";
+
 interface LoadMoreButtonProps {
   onClick: () => void;
   disabled?: boolean;
@@ -10,8 +12,13 @@ export default function LoadMoreButton({
   isLoading = false,
 }: LoadMoreButtonProps) {
   return (
-    <button type="button" onClick={onClick} disabled={disabled}>
-      {isLoading ? "Loading..." : "Load More"}
+    <button
+      type="button"
+      className={styles.button}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {isLoading ? "Loading..." : "Load more"}
     </button>
   );
 }

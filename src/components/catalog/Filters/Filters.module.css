@@ -19,6 +19,10 @@
   line-height: 1.5;
 }
 
+.inputWrapper {
+  position: relative;
+}
+
 .input {
   width: 100%;
   height: 56px;
@@ -26,12 +30,24 @@
   outline: none;
   border-radius: 12px;
   background-color: var(--white);
-  padding: 18px 20px;
+  padding: 18px 20px 18px 48px;
   color: var(--main);
   font-family: var(--font-family);
   font-size: 16px;
   line-height: 1.5;
   box-sizing: border-box;
+}
+
+.inputIcon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .input::placeholder {
@@ -73,6 +89,21 @@
   align-items: center;
   gap: 12px;
   cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.option:hover {
+  color: #6b7b75;
+  transform: translateX(2px);
+}
+
+.option input[type="radio"] {
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.option input[type="radio"]:hover {
+  box-shadow: 0 0 0 4px rgba(107, 123, 117, 0.12);
 }
 
 .radio {
@@ -151,7 +182,12 @@
   gap: 8px;
 }
 
+.clearButton:hover, .clearButton:focus {
+  border-color: #6d7b75;
+}
+
 .clearIcon {
-  font-size: 20px;
-  line-height: 1;
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
 }

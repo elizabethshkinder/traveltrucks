@@ -1,3 +1,4 @@
+import Rating from "@/components/shared/Rating/Rating";
 import type { Review } from "../../../types/review";
 import styles from "./ReviewsList.module.css";
 
@@ -23,9 +24,7 @@ export default function ReviewsList({ reviews }: ReviewsListProps) {
 
                 <div className={styles.meta}>
                   <h3 className={styles.name}>{review.reviewer_name}</h3>
-                  <p className={styles.rating}>
-                    Rating: {review.reviewer_rating}
-                  </p>
+                  <Rating rating={review.reviewer_rating} size={18} />
                 </div>
               </div>
 
