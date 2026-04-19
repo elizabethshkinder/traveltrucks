@@ -9,8 +9,6 @@ interface ReviewsListProps {
 export default function ReviewsList({ reviews }: ReviewsListProps) {
   return (
     <section className={styles.section}>
-      <h2 className={styles.title}>Reviews</h2>
-
       {reviews.length === 0 ? (
         <p className={styles.message}>No reviews yet</p>
       ) : (

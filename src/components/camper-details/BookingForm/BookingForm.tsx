@@ -51,6 +51,7 @@ export default function BookingForm({ camperId }: BookingFormProps) {
                 className={styles.input}
                 type="text"
                 name="name"
+                autoComplete="name"
                 placeholder="Name*"
               />
               <ErrorMessage
@@ -65,6 +66,7 @@ export default function BookingForm({ camperId }: BookingFormProps) {
                 className={styles.input}
                 type="email"
                 name="email"
+                autoComplete="email"
                 placeholder="Email*"
               />
               <ErrorMessage

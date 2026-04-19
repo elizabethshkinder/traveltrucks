@@ -1,7 +1,7 @@
 .section {
   border: 1px solid #dadde1;
   border-radius: 20px;
-  padding: 44px 32px;
+  padding: 44px;
   background-color: #ffffff;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .button {
-  min-width: 166px;
+  width: 100%;
   height: 56px;
   margin-top: 8px;
   align-self: flex-start;
@@ -61,14 +61,14 @@
   line-height: 1.5;
   font-weight: 500;
   color: #ffffff;
-  background-color: #e44848;
+  background-color:#829B91;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 .button:hover,
 .button:focus {
-  background-color: #d84343;
+  background-color: #6D7B75;
 }
 
 .button:disabled {

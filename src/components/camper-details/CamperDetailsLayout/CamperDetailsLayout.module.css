@@ -1,61 +1,74 @@
 .page {
-  padding: 48px 0 64px;
+  padding: 32px 64px 48px;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 64px;
+  padding: 0 48px;
 }
 
-.gallerySection {
-  margin-top: 28px;
+.topSection {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 40px;
 }
 
 .bottomSection {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 448px;
-  gap: 40px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
   align-items: start;
-  margin-top: 44px;
 }
 
 .reviewsColumn,
 .formColumn {
   min-width: 0;
+  width: 100%;
+}
+
+.formColumn {
+  margin-top: 56px;
+}
+
+.leftColumn,
+.rightColumn,
+.reviewsColumn,
+.formColumn {
+  min-width: 0;
+  height: 100%;
+}
+
+.rightColumn {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 16px;
+  height: 100%;
+}
+
+.infoBlock {
+  border-radius: 16px;
+  padding: 24px;
+  background: #f7f7f7;
+}
+
+.infoBlock:last-child {
+  height: 100%;
+}
+
+.sectionTitle {
+  margin: 0 0 24px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 133%;
+  color: #101828;
 }
 
 .message {
   font-size: 16px;
   line-height: 1.5;
   color: #475467;
-}
-
-@media (max-width: 1024px) {
-  .container {
-    padding: 0 32px;
-  }
-
-  .bottomSection {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .page {
-    padding: 32px 0 48px;
-  }
-
-  .container {
-    padding: 0 16px;
-  }
-
-  .gallerySection {
-    margin-top: 24px;
-  }
-
-  .bottomSection {
-    gap: 32px;
-    margin-top: 32px;
-  }
 }

@@ -1,6 +1,7 @@
 import type { CamperImage } from "./camper-image";
 
 export type Camper = {
+  reviews: any;
   id: string;
   name: string;
   price: number;

@@ -24,6 +24,7 @@
 }
 
 .image {
+  display: block;
   object-fit: cover;
 }
 
@@ -88,7 +89,6 @@
   width: 16px;
   height: 16px;
   stroke: currentColor;
-  fill: none;
   flex-shrink: 0;
 }
 
@@ -130,7 +130,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 166px;
+  max-width: 173px;
   height: 56px;
   padding: 16px 40px;
   border-radius: 200px;

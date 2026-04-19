@@ -36,8 +36,10 @@ export default function CamperCard({ camper }: CamperCardProps) {
         <div className={styles.metaRow}>
           <Rating
             rating={camper.rating}
-            reviews={camper.totalReviews}
+            reviews={typeof camper.reviews === "number" ? camper.reviews : 0}
+            size={16}
             showText
+            variant="compact"
           />
 
           <div className={styles.metaItem}>
@@ -95,8 +97,13 @@ export default function CamperCard({ camper }: CamperCardProps) {
           </span>
         </div>
 
-        <Link href={`/catalog/${camper.id}`} className={styles.button}>
-          Show more
+        <Link
+          href={`/catalog/${camper.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.button}
+        >
+        Show more
         </Link>
       </div>
     </article>

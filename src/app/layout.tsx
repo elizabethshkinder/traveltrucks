@@ -5,6 +5,7 @@ import "./globals.css";
 
 import QueryProvider from "../components/shared/QueryProvider";
 import { Toaster } from "react-hot-toast";
+import Header from "@/components/layout/Header/Header";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <QueryProvider>
+          <Header />
           {children}
           <Toaster position="top-right" />
         </QueryProvider>

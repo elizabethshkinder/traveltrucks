@@ -6,6 +6,7 @@ type RatingProps = {
   reviews?: number;
   size?: number;
   showText?: boolean;
+  variant?: "compact" | "full";
 };
 
 export default function Rating({
@@ -13,8 +14,23 @@ export default function Rating({
   reviews,
   size = 16,
   showText = false,
+  variant = "full",
 }: RatingProps) {
   const roundedRating = Math.round(rating);
+
+  if (variant === "compact") {
+    return (
+      <div className={styles.wrapper}>
+        <FaStar size={size} className={styles.filled} />
+        {showText && (
+          <span className={styles.text}>
+            {rating.toFixed(1)}
+            {reviews !== undefined ? ` (${reviews} Reviews)` : ""}
+          </span>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.wrapper}>
